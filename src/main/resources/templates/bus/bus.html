@@ -6,16 +6,17 @@
     <link href="/css/index.css" rel="stylesheet">
     <style>
         .seat {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            font-size: 16px;
-        }
-        .available {
-            background-color: lightgreen;
-        }
+         width: 50px;
+         height: 50px;
+         margin: 5px;
+         font-size: 16px;
+         border-radius: 5px; /* 모서리를 둥글게 */
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+         }
+
+
         .unavailable {
-            background-color: lightcoral;
+            border: 2px solid red; /* 예약된 좌석에 빨간색 굵은 테두리 */
         }
     </style>
 </head>
@@ -29,7 +30,6 @@
                 <!-- 좌석 리스트를 div로 감싸서 표시 -->
 
             </div>
-            <button id="cancelBtn" onclick="resetSeats()">취소</button>
         </div>
         <div class="purchaseBox">
             <div>버스 예약</div>
@@ -51,6 +51,21 @@
                 </div>
             </div>
         </div> <!-- 오른쪽 -->
+    </div>
+
+    <button type="button" class="btn btn-primary" id="liveToastBtn" style="display: none;">Show live toast</button>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                최신 좌석 상태가 변경되었습니다.
+            </div>
+        </div>
     </div>
 </div>
 
