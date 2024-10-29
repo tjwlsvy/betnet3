@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>연도별 KBReport 추가 기록</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/history/history.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <div class="container mt-4">
+        <div class="text-center">
+            <div class="mb-3">
+                <label for="year" class="form-label">연도 선택</label>
+                <select id="year">
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" selected>2024</option>
+                </select>
+            </div>
+            <label for="table">본 데이터의 출처는 KBReport, 케이비리포트입니다.</label>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>순위</th>
+                            <th>팀명</th>
+                            <th>경기</th>
+                            <th>승</th>
+                            <th>무</th>
+                            <th>패</th>
+                            <th>승률</th>
+                            <th>기대승률</th>
+                            <th>R/G</th>
+                            <th>득점</th>
+                            <th>홈런</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody class="historyTbody1">
+                </tbody>
+            </table>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>도루</th>
+                        <th>볼넷%</th>
+                        <th>삼진%</th>
+                        <th>BABIP</th>
+                        <th>타율</th>
+                        <th>출루율</th>
+                        <th>장타율</th>
+                        <th>OPS</th>
+                        <th>wOBA</th>
+                        <th>WAR</th>
+                    </tr>
+                </thead>
+                <tbody class="historyTbody2">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:replace="~{/footer.html:: footer}"></div>
+    <script src="/js/history/kbreport.js"></script>
+    <script src="/js/chat/chat.js"></script>
+</body>
+</html>

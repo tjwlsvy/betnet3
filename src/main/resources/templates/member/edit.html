@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보 수정</title>
+    <link href="/css/member/edit.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{/header.html:: header}"></div>
+<div class="container mt-5" id="wrap2">
+    <h3 class="text-center">개인정보 수정</h3>
+    <form id="registrationForm">
+        <!-- 비밀번호 -->
+        <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요" required oninput="validatePassword()">
+            <small id="passwordHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">비밀번호 확인</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="비밀번호를 다시 입력하세요" required oninput="validatePassword()">
+            <small id="confirmPasswordHelp" class="form-text text-muted"></small>
+        </div>
+
+        <!-- 연락처 -->
+        <div class="form-group">
+            <label for="phone">연락처</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="연락처를 입력하세요" required>
+            <button type="button" class="btn btn-secondary mt-2" onclick="checkPhone()">중복 검사</button>
+        </div>
+
+        <!-- 연락처 중복 검사 모달 -->
+        <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contactModalLabel">연락처 검사 결과</h5>
+
+                    </div>
+                    <div class="modal-body" id="contactModalBody">
+                        <!-- 결과 메시지가 여기에 표시됩니다 -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideModal()">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 이메일 -->
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력하세요" required>
+            <button type="button" class="btn btn-secondary mt-2" onclick="checkEmail()">중복 검사</button>
+        </div>
+
+        <!-- 이메일 중복 검사 모달 -->
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">이메일 검사 결과</h5>
+
+                    </div>
+                    <div class="modal-body" id="emailModalBody">
+                        <!-- 결과 메시지가 여기에 표시됩니다 -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideModal()">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 선호하는 야구팀 -->
+        <div class="form-group">
+            <label for="favoriteTeam">선호하는 야구팀</label>
+            <select class="form-control" id="favoriteTeam" name="favoriteTeam" required>
+
+            </select>
+        </div>
+
+        <!-- 계좌 -->
+        <div class="form-group">
+            <label for="account">계좌</label>
+            <input type="text" class="form-control" id="account" name="account" placeholder="계좌번호를 입력하세요">
+        </div>
+
+        <!-- 제출 버튼 -->
+        <button type="button" class="btn btn-primary" onclick="doEdit()">개인정보 수정</button>
+    </form>
+</div>
+<div th:replace="~{/footer.html:: footer}"></div>
+<script src="/js/member/edit.js"></script>
+</body>
+</html>

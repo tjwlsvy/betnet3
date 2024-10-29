@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>굿즈 거래 상세 페이지</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/market/marketview.css" rel="stylesheet">
+    <!-- Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <div class="container">
+        <div class="row">
+            <h2 id="mktitle">제목</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <span>작성자: </span><span id="mkwriter"></span>
+            </div>
+            <div class="col-md-4 text-center">
+                <span>조회수: </span><span id="mkview"></span>
+            </div>
+            <div class="col-md-4 text-end">
+                <span>작성날짜: </span><span id="mkdate"></span>
+            </div>
+        </div>
+        <div class="row my-5" id="imageBox">
+        </div>
+        <div class="row my-5" id="mkcontent">
+        </div>
+        <div class="row">
+            <div class="col-6 mt-3 mx-auto d-flex justify-content-center" id="btnBox">
+            </div>
+        </div>
+        <div class="row">
+            <label for="table">댓글</label>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>작성자</th>
+                        <th>내용</th>
+                        <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody class="replyTbody">
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <label for="form">댓글쓰기</label>
+            <form class="replyForm">
+                <div class="form-group">
+                    <textarea class="form-control" id="replyContent" rows="3" placeholder="댓글을 입력하세요" required></textarea>
+                </div> 
+                <button type="button" class="btn btn-primary" onclick="writeReply()">
+                    댓글 등록
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 수정 모달 -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">게시글 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="form-group mb-3">
+                        <label for="postTitle">제목</label>
+                        <input type="text" class="form-control" id="postTitle" placeholder="게시글 제목" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="summernote">내용</label>
+                        <textarea class="form-control" id="summernote"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" id="submitEdit" class="btn btn-primary" onclick="mkEdit()">수정하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/lang/summernote-ko-KR.min.js" ></script>
+    <script src="/js/market/marketview.js"></script>
+    <div th:replace="~{/footer.html:: footer}"></div>
+</body>
+</html>

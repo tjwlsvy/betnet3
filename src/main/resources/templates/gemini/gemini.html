@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BETNET</title>
+
+</head>
+<style>
+
+</style>
+
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/gemini/gemini.css" rel="stylesheet">
+
+    <div id="gemini">
+        <h3>궁금하신 KBO 팀을 선택 해주세요.</h3>
+
+        <div id="messageBox" style="white-space: pre-line;"></div>
+        <!-- 로딩 스피너 -->
+        <div id="loadingSpinner"></div>
+
+        <!-- KBO 팀 버튼 -->
+        <div id="teamButtons">
+            <button class="team-button" onclick="sendMessages('두산 베어스')">두산 베어스</button>
+            <button class="team-button" onclick="sendMessages('키움 히어로즈')">키움 히어로즈</button>
+            <button class="team-button" onclick="sendMessages('삼성 라이온즈')">삼성 라이온즈</button>
+            <button class="team-button" onclick="sendMessages('엘지 트윈스')">LG 트윈스</button>
+            <button class="team-button" onclick="sendMessages('엔씨 다이노스')">NC 다이노스</button>
+            <button class="team-button" onclick="sendMessages('기아 타이거즈')">KIA 타이거즈</button>
+            <button class="team-button" onclick="sendMessages('롯데 자이언츠')">롯데 자이언츠</button>
+            <button class="team-button" onclick="sendMessages('SSG 랜더스')">SSG 랜더스</button>
+            <button class="team-button" onclick="sendMessages('한화 이글스')">한화 이글스</button>
+            <button class="team-button" onclick="sendMessages('케이티 위즈')">KT 위즈</button>
+        </div>
+        <div id="subButtons">
+
+        </div>
+
+
+
+        <!-- 추가 정보 버튼 (팀 선택 후에 보여줄 버튼들) -->
+        <div id="extraButtons">
+            <!-- 여기에 선택한 팀에 대한 추가 정보를 위한 버튼이 동적으로 추가됨 -->
+        </div>
+    </div>
+
+
+<script src="/js/gemini/gemini.js"></script>
+<div th:replace="~{/footer.html:: footer}"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+/*  게임구매상세내역 페이지 */
+.wrap2{
+    width: 1080px;
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.info{
+    display: flex;
+    justify-content: left;
+}
+.printListid{
+    margin: 20px;
+}
+.betPoint{
+    background-color: pink;
+}

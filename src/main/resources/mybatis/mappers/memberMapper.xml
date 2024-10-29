@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 1. 매핑할 인터페이스명 정의 # namespace=경로(java폴더 아래부터) -->
+<mapper namespace="web.model.dao.MemberDao">
+
+    <!-- 2. DML INSERT # id  #parameterType=매개변수타입경로 -->
+    <insert id="signUp" parameterType="web.model.dto.MemberDto">
+        insert into members( userName , password , name , contact , email , gender , age , teamCode , account  )
+        values( #{ userName } , #{ password }  , #{ name } , #{ contact } , #{ email } , #{ gender } , #{ age } , #{ teamCode } , #{ account } )
+    </insert>
+
+    <select id="login" parameterType="web.model.dto.MemberDto" resultType="web.model.dto.MemberDto">
+        SELECT *
+        FROM members
+        WHERE username = #{userName}
+        AND password = #{password}
+    </select>
+
+    <select id="idChecking" parameterType="web.model.dto.MemberDto">
+        select COUNT(*) > 0 from members where userName=#{userName}
+    </select>
+
+    <select id="phoneCheck" parameterType="web.model.dto.MemberDto">
+        select COUNT(*) > 0 from members where contact=#{contact}
+    </select>
+
+    <select id="teams" parameterType="web.model.dto.TeamsDto">
+        select * from teams where teamcode !=11
+    </select>
+
+    <select id="emailCheck" parameterType="web.model.dto.MemberDto">
+        select COUNT(*) > 0 from members where email=#{email}
+    </select>
+
+    <select id="logCheck" parameterType="web.model.dto.MemberDto">
+        select * from members m inner join teams t on m.teamcode=t.teamcode where memberid=#{memberid}
+    </select>
+
+    <update id="edit" parameterType="web.model.dto.MemberDto">
+        UPDATE members
+        SET
+        password = #{password},
+        contact = #{contact},
+        email = #{email},
+        teamCode = #{teamCode},
+        account = #{account}
+        WHERE
+        memberid = #{memberid};
+    </update>
+
+    <!-- 잔액 포인트 출력 -->
+    <select id="purchase" parameterType="web.model.dto.SearchDto" resultType="web.model.dto.PointLogDto">
+        select * from pointlogs where memberid = #{memberid} and Description = 3
+            AND logDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY) - INTERVAL 1 SECOND;
+    </select>
+
+    <!-- 잔액 포인트 출력 -->
+    <select id="refund" parameterType="web.model.dto.SearchDto" resultType="web.model.dto.PointLogDto">
+        select * from pointlogs where memberid = #{memberid} and Description = 2
+        AND logDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY) - INTERVAL 1 SECOND;
+    </select>
+
+<!--    &lt;!&ndash; 2. DML SELECT  &ndash;&gt;-->
+<!--    <select id="read" resultType="example.task1.AccountDto">-->
+<!--        select * from account-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 2. DML UPDATE  &ndash;&gt;-->
+<!--    <update id="update" parameterType="example.task1.AccountDto">-->
+<!--        update account set content = #{ content } , price = #{ price } ,-->
+<!--        date = #{date}  where id = #{ id }-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash; 2. DML DELETE  &ndash;&gt;-->
+<!--    <delete id="delete" parameterType="int">-->
+<!--        delete from account where id = #{ id }-->
+<!--    </delete>-->
+
+</mapper>

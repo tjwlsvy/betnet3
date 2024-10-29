@@ -1,0 +1,21 @@
+.wrap {
+    display: flex;
+    justify-content: center; /* 가로 가운데 정렬 */
+    margin-bottom: 20px;
+}
+.container2 {
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    max-width: 600px; /* 원하는 최대 너비 설정 */
+    width: 100%; /* 전체 너비 사용 */
+}
+
+.question {
+    margin-bottom: 20px; /* 질문 간격 조정 */
+}
+
+#teamSurvey{
+    margin: 20px;
+}
+#mainSurvey > form{
+    margin-bottom: 20px;
+}

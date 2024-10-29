@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>포인트</title>
+    <link href="/css/member/stat.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div th:replace="~{/header.html:: header}"></div>
+<div class="wrap">
+    <div class="wrap2">
+        <div class="info">
+            홈 > 마이페이지 > 구매현황분석
+        </div>
+        <h3> 구매현황분석 </h3>
+        <div class="searchBox">
+            <table class="searchTable table">
+                <colgroup>
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="13%">
+                    <col width="35%">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th> 구매일자 </th>
+                    <td colspan="5">
+                        <div class="dateBox">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="changeDate(30)"> 1개월 </button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="changeDate(90)"> 3개월 </button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="changeDate(180)"> 6개월 </button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="changeDate(240)"> 8개월 </button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="changeDate(365)"> 12개월 </button>
+                            <input type="date" class="startDate"/>
+                            <input type="date" class="endDate"/>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="btnBox">
+                <button class="btn btn-primary" type="button" onclick="onSearch()"> 검색 </button>
+            </div>
+        </div> <!-- searchBox end -->
+
+        <!-- New Section for displaying purchase data -->
+        <div class="resultBox">
+            <div class="resultItem">
+                <span>구매금액: </span><span id="purchaseAmount">0원</span>
+            </div>
+            <div class="resultItem">
+                <span>적중금액: </span><span id="hitAmount">0원</span>
+            </div>
+            <div class="resultItem">
+                <span>환급률: </span><span id="returnRate">0%</span>
+            </div>
+        </div> <!-- resultBox end -->
+        <!-- 차트를 표시할 캔버스 요소 -->
+        <div style="width: 80%; margin: 0 auto;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <!-- 포인트 출금 Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">|포인트 출금</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form">
+                            <div>
+                                <p> 출금할 포인트 금액 </p>
+                                <input type="text" class="withdrawPoint"/>
+                            </div>
+                            <div>
+                                <p> 내 계좌 정보 </p>
+                                <div class="myAccountBox"> </div>
+                            </div>
+                            <div>
+                                <p> 비밀번호 </p>
+                                <input type="password" class="passwordCheck" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="withdraw()">출금하기</button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Modal end -->
+    </div>  <!-- wrap2 end -->
+</div>
+<div th:replace="~{/footer.html:: footer}"></div>
+<script src="/js/member/stat.js"></script>
+</body>
+</html>

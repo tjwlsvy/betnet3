@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="~{/header.html:: header}"></div>
+<link href="/css/index.css" rel="stylesheet">
+<link href="/css/market/market.css" rel="stylesheet">
+
+    <div id="chatballpt">
+        <h1>ChatBallPT</h1>
+        <div id="chat"></div>
+        <div id="messageBox"></div>
+        <input type="text" id="userInput" placeholder="메시지를 입력하세요...">
+        <button id="sendButton" onclick="sendMessage()">전송</button>
+    </div>
+
+
+<script src="/js/chatballpt/chatballpt.js"></script>
+<div th:replace="~{/footer.html:: footer}"></div>
+</body>
+</html>

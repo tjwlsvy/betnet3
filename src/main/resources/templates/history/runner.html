@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>연도별 주루 팀기록</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/history/historyshort.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <div class="container mt-4">
+        <div class="text-center">
+            <div class="mb-3">
+                <label for="year" class="form-label">연도 선택</label>
+                <select id="year">
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" selected>2024</option>
+                </select>
+            </div>
+            <label for="table">본 데이터의 출처는 KBO 공식 사이트입니다.</label>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>도루성공순위</th>
+                            <th>팀명</th>
+                            <th>경기수[G]</th>
+                            <th>도루시도수[SBA]</th>
+                            <th>도루성공수[SB]</th>
+                            <th>도루실패수[CS]</th>
+                            <th>도루성공률[SB%]</th>
+                            <th>아웃오프베이스[OOB]</th>
+                            <th>포수에의한아웃[PKO]</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody class="historyTbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:replace="~{/footer.html:: footer}"></div>
+    <script src="/js/history/runner.js"></script>
+    <script src="/js/chat/chat.js"></script>
+</body>
+</html>

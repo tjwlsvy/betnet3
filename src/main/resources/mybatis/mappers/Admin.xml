@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml 주석 -->
+<mapper namespace="web.model.dao.AdminDao" >  <!-- mapper start -->
+
+    <update id="cAdmin" parameterType="String">
+        update GamePurchaseDetails set matchstate = 0 where matchid = #{matchid}
+    </update>
+
+    <!-- 회원 접속 기록 -->
+    <select id="accessLog" resultType="web.model.dto.LogDto">
+        select * from access inner join members on access.memberid = members.memberid order by memberdatetime desc;
+    </select>
+
+    <!-- 배당금 지급 내역 -->
+    <select id="dividend" resultType="web.model.dto.PointLogDto">
+        select * from PointLogs inner join members on PointLogs.memberid = members.memberid
+        where Description = 2 order by logdate desc;
+    </select>
+
+    <!-- 포인트 구매 내역 -->
+    <select id="pointBuy" resultType="web.model.dto.PointLogDto">
+        select * from PointLogs inner join members on PointLogs.memberid = members.memberid where Description = 1 order by logdate desc;
+    </select>
+
+    <!-- 포인트 출금 내역 -->
+    <select id="pointWithdrawal" resultType="web.model.dto.PointLogDto">
+        select * from PointLogs inner join members on PointLogs.memberid = members.memberid where Description = 4 order by logdate desc;
+    </select>
+
+    <!-- 게임 구매 내역 -->
+    <select id="gameBuy" resultType="web.model.dto.GameDto">
+        select * FROM GamePurchaseDetails
+        INNER JOIN GamePurchaseList ON GamePurchaseDetails.listid = GamePurchaseList.listid
+        INNER JOIN PointLogs ON GamePurchaseList.PointLogID = PointLogs.PointLogID
+        ORDER BY PointLogs.LogDate DESC;
+    </select>
+
+    
+</mapper> <!-- mapper end -->
+

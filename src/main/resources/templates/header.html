@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="header">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 공통 CSS -->
+    <link href="/css/header.css" rel="stylesheet">
+    <!-- 1. 부트스트랩 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <marquee class="hypoBar" behavior="scroll" direction="left" style="background-color: #112c62;  padding: 10px;">
+        여기에 가설 넣을 예정
+    </marquee>
+
+    <button class="chatBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+        <img src="/img/chaticon.gif" />
+    </button>
+
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel"> 채팅방 </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- 채팅 -->
+            <div id="chating">
+                <div class="Box" >
+                    <div>
+                        <div class="msgBox" style="display : block;"></div>
+                        <div id="msgText">
+                            <input type="text" class="msgInput" />
+                            <button class="msgButton" onclick="onMsgSend()"> 전송 </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div id="menu">
+            <div id="topMenu"> <!-- 상단 메뉴-->
+                <a href="/member/login"> 로그인 </a> <a href="/member/signup"> 회원가입 </a>
+            </div>
+            <div> <!-- 로고 -->
+                <a href="/"><img src="/img/B (2).png" class="logo"/></a>
+            </div>
+            <!-- 메인 메뉴 -->
+            <div id="bottomMenu">
+                <ul class="menu">
+                    <li>
+                        <a href="/article">NEWS</a>
+                    </li>
+                    <li>
+                        <a href="/history/hitter">연도별기록</a>
+                        <ul class="submenu">
+                            <li><a href="/history/hitter">팀별타자기록</a></li>
+                            <li><a href="/history/pitcher">팀별투수기록</a></li>
+                            <li><a href="/history/runner">팀별주루기록</a></li>
+                            <li><a href="/history/rank">팀순위기록</a></li>
+                            <li><a href="/history/kbreport">KBReport기록</a></li>
+                            <li><a href="/gemini">키워드 챗봇</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/market">굿즈거래</a>
+                    </li>
+                    <li>
+                        <a href="/poll">설문조사</a>
+                        <!-- <ul class="submenu">
+                            <li><a href="/poll">설문조사</a></li>
+                            <li><a href="#">submenu02</a></li>
+                            <li><a href="#">submenu03</a></li>
+                            <li><a href="#">submenu04</a></li>
+                            <li><a href="#">submenu05</a></li>
+                        </ul> -->
+                    </li>
+                    <li>
+                        <a href="/member/salary">선수연봉</a>
+                    </li>
+                    <li>
+                        <a href="/board">게시판</a>
+                    </li>
+                    <li>
+                        <a href="/chatballpt">챗봇</a>
+                    </li>
+                </ul>
+            </div>  <!-- bottomMenu end -->
+        </div> <!-- menu end -->
+    </div>  <!-- wrap end -->
+
+    <style>
+        .hypoBar {
+            background-color: #f0f0f0; /* 배경색 */
+            color: #333; /* 글자색 */
+            padding: 10px; /* 여백 */
+            font-size: 1.2em; /* 폰트 크기 */
+            font-family: Arial, sans-serif; /* 글꼴 */
+            white-space: nowrap; /* 줄 바꿈 방지 */
+        }
+
+        /* 애니메이션 조정 */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* 추가 스타일 (예시) */
+        .hypoBar {
+            display: inline-block; /* 인라인 블록 */
+            overflow: hidden; /* 넘치는 내용 숨김 */
+            width: 100%; /* 전체 너비 */
+            box-sizing: border-box; /* 패딩 포함 너비 계산 */
+        }
+    </style>
+
+    <!-- 공통 JS -->
+    <!-- 1. JQUERY , AJAX -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- 2. 부트스트랩 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/js/header.js"></script>
+    <script src="/js/chat/chat.js"></script>
+
+</body>
+</html>

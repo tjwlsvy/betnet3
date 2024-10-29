@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>굿즈 거래</title>
+
+</head>
+<body>
+        <div th:replace="~{/header.html:: header}"></div>
+        <link href="/css/index.css" rel="stylesheet">
+        <link href="/css/market/market.css" rel="stylesheet">
+        <div class="container mt-4">
+            <div class="row mb-3">
+                <div class="col-6 mx-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" style="flex: 2;" placeholder="검색어를 입력하세요">
+                        <select class="form-select" id="stateSearch" aria-label="거래상태">
+                            <option value="100" selected>거래상태</option>
+                            <option value="0">진행중</option>
+                            <option value="1">거래완료</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="search()">검색</button>
+                        <button class="btn btn-secondary" onclick="searchClear()">초기화</button>
+                        <button class="btn btn-success" onclick="location.href='/marketadd'">글쓰기</button>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 게시판 테이블 -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>글번호</th>
+                        <th colspan="2">제목</th>
+                        <th>작성자</th>
+                        <th>거래현황</th>
+                        <th>조회수</th>
+                        <th>날짜</th>
+                    </tr>
+                </thead>
+                <tbody class="marketTbody">
+                </tbody>
+            </table>
+            <!-- 페이징 -->
+            <div class="d-flex justify-content-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    <script src="/js/market/market.js"></script>
+    <div th:replace="~{/footer.html:: footer}"></div>
+</body>
+</html>

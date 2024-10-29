@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml 주석 -->
+<mapper namespace="web.model.dao.MarketDao" > <!-- mapper start -->
+
+    <!-- 1. 글 불러오기 (+ 검색어, 거래상태) -->
+    <select id="mkReadAll" parameterType="web.model.dto.MarketPageDto" resultType="web.model.dto.MarketDto">
+        select * from market inner join members on market.mkwriter = members.memberid
+        <where>
+            <if test="mkstate != 100">
+                and mkstate = #{mkstate}
+            </if>
+            <if test="searchkeyword != null and searchkeyword != ''">
+                and mktitle like concat('%', #{searchkeyword}, '%')
+            </if>
+        </where>
+        order by mkid desc limit #{startrow}, #{pagesize};
+    </select>
+
+    <!-- 1-1. 게시판 페이지화) 총 게시글 수 검색 -->
+    <select id="getTotalBoardSize" parameterType="web.model.dto.MarketPageDto" resultType="int">
+        select count(*) from market inner join members on market.mkwriter = members.memberid
+        <where>
+            <if test="mkstate != 100">
+                and mkstate = #{mkstate}
+            </if>
+            <if test="searchkeyword != null and searchkeyword != ''">
+                and mktitle like concat('%', #{searchkeyword}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 2. 글 작성하기 -->
+    <insert id="mkWrite" parameterType="web.model.dto.MarketDto" useGeneratedKeys="true" keyProperty="mkid">
+        insert into market (mktitle, mkwriter, mkcontent) values (#{mktitle}, #{memberid}, #{mkcontent});
+    </insert>
+
+    <!-- 2-1. 첨부파일 테이블 -->
+    <insert id="mkWriteFiles" parameterType="web.model.dto.MarketDto">
+        insert into marketfiles (mkid, filename) values
+        <foreach collection="filenames" item="filename" separator=",">
+            (#{mkid}, #{filename})
+        </foreach>
+    </insert>
+
+    <!-- 3. 글 상세 페이지 -->
+    <select id="mkRead" parameterType="int" resultType="web.model.dto.MarketDto">
+        select * from market inner join members on market.mkwriter = members.memberid where mkid = #{mkid};
+    </select>
+
+    <!-- 3-1. 상세글보기에서 댓글 불러오기-->
+    <select id="mkReadReply" parameterType="int" resultType="web.model.dto.MarketReplyDto">
+        select * from marketreply inner join members on marketreply.mkreplywriter = members.memberid where mkid = #{mkid};
+    </select>
+
+    <!-- 3-2. 상세글보기 이미지 파일명 목록 -->
+    <select id="getFilenames" parameterType="int" resultType="String">
+        select filename from marketfiles where mkid = #{mkid};
+    </select>
+
+    <!-- 4. 상세 페이지 조회수 증가 -->
+    <update id="mkView" parameterType="web.model.dto.MarketDto">
+        update market set mkview = mkview + 1 where mkid = #{mkid};
+    </update>
+
+    <!-- 5. 글 수정/삭제 권한 확인 -->
+    <select id="mkCheck" parameterType="web.model.dto.MarketDto" resultType="int">
+        select count(*) from market where mkid = #{mkid} and mkwriter = #{memberid};
+    </select>
+
+    <!-- 6. 글 수정하기 (거래완료 제외) -->
+    <update id="mkEdit" parameterType="web.model.dto.MarketDto">
+        update market set mktitle = #{mktitle}, mkcontent = #{mkcontent}, mkstate = #{mkstate}
+        where mkid = #{mkid} and mkwriter = #{memberid};
+    </update>
+
+    <!-- 6-1. 거래 상태 변경 (진행중 -> 거래완료) -->
+    <update id="updateMkState" parameterType="web.model.dto.MarketDto">
+        update market set mkstate = 1 where mkid = #{mkid};
+    </update>
+
+    <!-- 7. 글 삭제하기 (거래완료 제외) -->
+    <delete id="mkDelete" parameterType="web.model.dto.MarketDto">
+        delete from market where mkwriter = #{memberid} and mkid = #{mkid};
+    </delete>
+
+    <!-- 8. 게시물 댓글 작성 -->
+    <insert id="mkWriteReply" parameterType="web.model.dto.MarketReplyDto">
+        insert into marketreply (mkreplywriter, mkid, mkreplycontent) values (#{mkreplywriter}, #{mkid}, #{mkreplycontent});
+    </insert>
+
+</mapper> <!-- mapper end -->
+

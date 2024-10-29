@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 등록페이지</title>
+
+    <!-- 해당 페이지에서만 사용할 CSS  -->
+    <!-- 1. 썸머노트 CSS , 부트스트랩 버전과 썸머노트 버전  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" />
+
+
+</head>
+<body>
+<div th:replace="~{/header.html:: header}"></div>
+
+<div class="container">
+    <form class="boardWriteForm">
+        <div class="d-flex flex-wrap border p-3 rounded mb-4" style="border: 1px solid #dee2e6; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="1" id="team1">
+                <label class="form-check-label" for="team1">기아</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="2" id="team2">
+                <label class="form-check-label" for="team2">삼성</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="3" id="team3">
+                <label class="form-check-label" for="team3">LG</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="4" id="team4">
+                <label class="form-check-label" for="team4">두산</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="5" id="team5">
+                <label class="form-check-label" for="team5">KT</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="6" id="team6">
+                <label class="form-check-label" for="team6">한화</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="7" id="team7">
+                <label class="form-check-label" for="team7">SSG</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="8" id="team8">
+                <label class="form-check-label" for="team8">롯데</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="9" id="team9">
+                <label class="form-check-label" for="team9">NC</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="10" id="team10">
+                <label class="form-check-label" for="team10">키움</label>
+            </div>
+            <div class="form-check me-3">
+                <input type="radio" class="form-check-input" name="teamcode" value="11" id="team11" checked>
+                <label class="form-check-label" for="team11">자유게시판</label>
+            </div>
+        </div>
+
+        <!--        <div>-->
+<!--            <select name="teamcode" id="teamcode">-->
+<!--                <option value="0">팀선택</option>-->
+<!--                <option value="1">기아</option>-->
+<!--                <option value="2">삼성</option>-->
+<!--                <option value="3">LG</option>-->
+<!--                <option value="4">두산</option>-->
+<!--                <option value="5">KT</option>-->
+<!--                <option value="6">한화</option>-->
+<!--                <option value="7">SSG</option>-->
+<!--                <option value="8">롯데</option>-->
+<!--                <option value="9">NC</option>-->
+<!--                <option value="10">키움</option>-->
+<!--                <option value="11">자유게시판</option>-->
+<!--            </select>-->
+<!--        </div>-->
+        <div class="container mt-4">
+            <div class="form-group mb-4">
+                <label for="title">제목:</label>
+                <input type="text" name="title" class="form-control title" placeholder="제목을 입력하세요" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="summernote">내용:</label>
+                <textarea id="summernote" class="form-control content" name="content" rows="5" placeholder="내용을 입력하세요"></textarea>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="doBoardWrite()">글쓰기</button>
+        </div>
+
+    </form>
+</div>
+
+<div th:replace="~{/footer.html:: footer}"></div>
+
+<!-- 공통 JS -->
+<!-- 1. JQUERY , AJAX -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 2. 부트스트랩 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- 1. 썸머노트 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js" ></script>
+<!-- 2. 썸머노트 한글 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/lang/summernote-ko-KR.min.js" ></script>
+
+
+<script src="/js/board/write.js"></script>
+
+</body>
+</html>

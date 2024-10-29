@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml 주석 -->
+<mapper namespace="web.model.dao.BoardDao" >  <!-- mapper start -->
+    <!-- namespace=" 매핑할 인터페이스 경로(위치) " -->
+    <insert id="bWrite" parameterType="web.model.dto.BoardDto">
+        INSERT INTO TeamBoard (MemberID, TeamCode, Content, Title) VALUES ( #{memberid},#{teamcode},#{content},#{title})
+    </insert>
+
+    <select id="bRead" resultType="web.model.dto.BoardDto">
+        select * from teamboard inner join members on teamboard.memberid = members.memberid order by postid desc;
+    </select>
+
+    <select id="caRead" resultType="web.model.dto.BoardDto">
+        select * from teamboard inner join members on teamboard.memberid = members.memberid where teamboard.teamcode = #{teamcode} order by postid desc;
+    </select>
+
+    <select id="bFindBno" resultType="web.model.dto.BoardDto">
+        SELECT * FROM teamboard tb JOIN teams t ON tb.teamcode = t.teamcode WHERE tb.postid = #{postid};
+    </select>
+
+    <update id="bUpdate" parameterType="web.model.dto.BoardDto">
+        update teamboard set Title = #{title}, Content = #{content} where memberid = #{memberid} and postid = #{postid}
+    </update>
+
+    <delete id="bDelete" parameterType="web.model.dto.BoardDto">
+        delete from teamboard where postid = #{postid} and memberid = #{memberid};
+    </delete>
+    <!-- 조회수 증가 처리 -->
+    <update id="bViewIncrease" parameterType="web.model.dto.BoardDto">
+        update teamboard set views = views + 1 where postid = #{postid};
+    </update>
+
+
+    <!-- ///////////////////////댓글 부븐////////////////////////////// -->
+    <select id="rpRead" resultType="web.model.dto.ReplyDto">
+        select * from comments inner join members on members.memberid = comments.memberid where postid = #{postid};
+    </select>
+
+    <insert id="reWrite" parameterType="web.model.dto.ReplyDto">
+        insert into comments (memberid, postid, commentindex, content) values ( #{memberid},#{postid},#{commentindex},#{content})
+    </insert>
+
+    <update id="rpUpdate" parameterType="web.model.dto.ReplyDto">
+        update comments set content = #{content} where commentid = #{commentid} and memberid=#{memberid} and postid =#{postid};
+    </update>
+
+    <delete id="rpDelete" parameterType="web.model.dto.ReplyDto">
+        delete from comments where commentid = #{commentid} and memberid= #{memberid} and postid = #{postid} ;
+    </delete>
+
+</mapper> <!-- mapper end -->

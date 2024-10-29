@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>응원채팅</title>
+    <link href="/css/cheerChat/cheerChat.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <div class="wrap">
+        <div class="wrap2">
+            <div id="map" style="width:1080px;height:350px;"></div>
+
+            </div>
+        </div>
+        <!-- 채팅방 -->
+        <div class="cheerRoom" id="cheerRoom">
+            <div class="cheerMsgBox" id="cheerMsgBox"></div>
+            <div class="cheerInputBox">
+                <input type="text" class="cheerMsgInput" id="cheerMsgInput" placeholder="메시지를 입력하세요...">
+                <button type="button" class="sendButton" onclick="sendM()">전송</button>
+                <button type="button" class="leaveButton" onclick="outChat()">채팅방 나가기</button>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{/footer.html:: footer}"></div>
+
+    <!-- 카카오 API -->
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ea7df96fb8a9110c6a9531132eb9b1a9"></script>
+    <script src="/js/cheerChat/cheerChat.js"></script>
+    
+</body>
+</html>

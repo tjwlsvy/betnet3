@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>연도별 투수 팀기록</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/history/history.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <div class="container mt-4">
+        <div class="text-center">
+            <div class="mb-3">
+                <label for="year" class="form-label">연도 선택</label>
+                <select id="year">
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024" selected>2024</option>
+                </select>
+            </div>
+            <label for="table">본 데이터의 출처는 KBO 공식 사이트입니다.</label>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>자책점순위</th>
+                            <th>팀명</th>
+                            <th>자책점평균[ERA]</th>
+                            <th>경기수[G]</th>
+                            <th>승리수[W]</th>
+                            <th>패배수[L]</th>
+                            <th>세이브[SV]</th>
+                            <th>홀드[HLD]</th>
+                            <th>승률[WPCT]</th>
+                            <th>이닝수[IP]</th>
+                            <th>안타수[H]</th>
+                            <th>홈런수[HR]</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody class="historyTbody1">
+                </tbody>
+            </table>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>볼넷수[BB]</th>
+                            <th>죽은볼수[HBP]</th>
+                            <th>삼진수[SO]</th>
+                            <th>실점수[R]</th>
+                            <th>자책점수[ER]</th>
+                            <th>WHIP[WHIP]</th>
+                            <th>완투수[CG]</th>
+                            <th>완봉수[SHO]</th>
+                            <th>퀄리티스타트[QS]</th>
+                            <th>블론세이브[BSV]</th>
+                            <th>타석수[TBF]</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody class="historyTbody2">
+                </tbody>
+            </table>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>투구수[NP]</th>
+                            <th>타율[AVG]</th>
+                            <th>2루타수[2B]</th>
+                            <th>3루타수[3B]</th>
+                            <th>희생번트[SAC]</th>
+                            <th>희생플라이[SF]</th>
+                            <th>고의사구[IBB]</th>
+                            <th>폭투[WP]</th>
+                            <th>볼넷[BK]</th>
+                            <th>타석당삼진[K%]</th>
+                            <th>볼삼비[K/BB]</th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody class="historyTbody3">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:replace="~{/footer.html:: footer}"></div>
+    <script src="/js/history/pitcher.js"></script>
+    <script src="/js/chat/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+#wrap{
+    background-color: #BDCAF2;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+#wrap2{
+    width: 1080px;
+    padding: 10px;
+}
+.footerTop {
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬을 위해 추가된 부분 */
+    justify-content: space-between; /* 아이템 사이에 여백을 추가 */
+    border-bottom: 1px solid #eeeeee;
+}
+.footerTop p {
+    color: white;
+    margin: 0; /* p 요소의 기본 여백을 제거 */
+}
+
+.footerTop button {
+    margin: 5px;
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+.footerBottom{
+    margin-top: 10px;
+}
+.footerBottom p{ 
+    color: white;
+}

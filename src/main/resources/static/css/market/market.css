@@ -1,0 +1,35 @@
+.searchBox {
+    display: flex;
+}
+/* 테이블 각 열마다 너비 적용  */
+th:nth-child(1) { width: 5%; }  /* 글번호 */
+th:nth-child(2) { width: 40%; }  /* 제목(사진) */
+th:nth-child(3) { width: 5%; }  /* 작성자 */
+th:nth-child(4) { width: 8%; }  /* 거래현황 */
+th:nth-child(5) { width: 5%; }  /* 조회수 */
+th:nth-child(6) { width: 15%; }  /* 날짜 */
+
+td:nth-child(1) { width: 5%; text-align: center; vertical-align: middle;}  /* 글번호 */
+td:nth-child(2) { width: 15%; }  /* 제목(사진) */
+td:nth-child(3) { width: 35%; vertical-align: middle;}  /* 제목 */
+td:nth-child(4) { width: 5%; text-align: center; vertical-align: middle;}  /* 작성자 */
+td:nth-child(5) { width: 8%; text-align: center; vertical-align: middle;}  /* 거래현황 */
+td:nth-child(6) { width: 5%; text-align: center; vertical-align: middle;}  /* 조회수 */
+td:nth-child(7) { width: 15%; text-align: center; vertical-align: middle;}  /* 날짜 */
+
+table {
+    text-align: center; /* 모든 셀의 텍스트를 가운데 정렬 */
+}
+
+/* 기본 링크 스타일 */
+a {
+    color: black; /* 기본 색상: 검정색 */
+    text-decoration: none; /* 밑줄 없음 */
+    cursor: pointer; /* 호버 시에도 손 모양 유지 */
+}
+
+/* 호버 시 스타일 */
+a:hover {
+    color: blue; /* 호버 시 색상: 파란색 */
+    cursor: pointer; /* 호버 시에도 손 모양 유지 */
+}

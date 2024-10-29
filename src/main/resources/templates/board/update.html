@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" />
+
+
+<div th:replace="~{/header.html:: header}"></div>
+
+
+
+<div class="container">
+  <h3> 게시물 쓰기 페이지 </h3>
+  <form class="boardWriteForm">
+    <div>
+      <select name="teamcode" id="teamcode">
+        <option value="0">전체게시판</option>
+        <option value="1">기아</option>
+        <option value="2">삼성</option>
+        <option value="3">LG</option>
+        <option value="4">두산</option>
+        <option value="5">KT</option>
+        <option value="6">한화</option>
+        <option value="7">SSG</option>
+        <option value="8">롯데</option>
+        <option value="9">NC</option>
+        <option value="10">키움</option>
+        <option value="11">자유게시판</option>
+      </select>
+    </div>
+    <div class="etcBox"> 작성자 :  </div>
+    <div> 제목 : <input type="text" name="title" class="title" /> </div>
+    <div> 내용 : <textarea id="summernote" class="content" name="content"> </textarea> </div>
+    <div class="btnBox">
+    </div>
+  </form>
+</div>
+<div th:replace="~{/footer.html:: footer}"></div>
+
+<script src="/js/board/update.js"></script>
+<!-- 1. 썸머노트 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js" ></script>
+<!-- 2. 썸머노트 한글 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/lang/summernote-ko-KR.min.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml 주석 -->
+<mapper namespace="web.model.dao.BusDao" >  <!-- mapper start -->
+
+    <insert id="busReservation" parameterType="web.model.dto.BusDto">
+        insert into bus(gamecode,pointlogid, restatus, seat) values( #{gameCode},#{pointlogid}, #{reStatus}, #{seat})
+    </insert>
+
+    <insert id="busPurchase" parameterType="web.model.dto.BusDto">
+        insert into PointLogs (memberid, pointChange, description) values (#{memberId}, #{pointChange}, #{description});
+    </insert>
+
+    <select id="busCheck" parameterType="String">
+        select seat , sum( restatus ) AS sumStatus from bus where gamecode = #{gameCode}  group by seat;
+    </select>
+
+    <select id="busLog" parameterType="int">
+        SELECT b.resno, b.gamecode, b.restatus, b.seat, p.MemberID, p.LogDate, p.PointChange, p.Description
+        FROM bus b
+        JOIN PointLogs p
+        ON b.PointLogID = p.PointLogID
+        WHERE p.MemberID = #{memberId}
+        ORDER BY p.LogDate DESC;
+    </select>
+
+</mapper> <!-- mapper end -->

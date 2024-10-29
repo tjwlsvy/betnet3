@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BETNET</title>
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{/header.html:: header}"></div>
+    <div class="wrap" style="    margin-bottom: 50px;">
+        <div style=" width: 1080px;display: flex;  justify-content: space-between;">
+            <div class="article" style="width:55%">
+                <div>
+                    <h6> KBO 헤드라인 뉴스 </h6>
+                    <table>
+                        <tbody class="atricleBox">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="width:45%">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img src="/img/top_ad1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="/img/top_ad2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item"  data-bs-interval="3000">
+                            <img src="/img/top_ad3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wrap">
+        <div class="indexMain">
+            <div class="leftBox">
+                <div class="gameListBox">
+                    <img onclick="adPoint()" src="/img/ad1.jpg" width="100%"/>
+                    <div>
+                        <div> # </div>
+                        <div>
+                            경기 유형
+                        </div>
+                        <div>
+                            마감 시간
+                        </div>
+                        <div>
+                            경기 정보
+                        </div>
+                        <div>
+                            버스 예약
+                        </div>
+                        <div>
+                            배당률 선택 <img src="/img/aiicon.gif" width="30px" />AI
+                        </div>
+                        <div>
+                            채팅
+                        </div>
+                    </div>
+                </div>
+                <div class="gameListBox gamePrintBox">
+
+                </div> <!-- 왼쪽  -->
+            </div>
+            <div class="purchaseBox">
+                <div>구매 카트</div>
+                <table class="table">
+                    <tbody class="purchaseCartBox">
+                    </tbody>
+                </table>
+                <div class="bottomCartInfo">
+                    <table class="table table2">
+                        <thead class="purchaseInfoBox">
+
+                        </thead>
+                        <tbody>
+                        <tr> <th> 배팅포인트 </th> <td><input type="text" class="pointChange" onkeyup="updateTotalOdds()"/></td> </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <p> <span class="colorPoint">50,000</span> 포인트까지 구매 가능합니다.</p>
+                    </div>
+                    <div>
+                        <button type="button" onclick="gamePurchase()">구매하기</button>
+                    </div>
+                </div>
+            </div> <!-- 오른쪽 -->
+        </div>
+    </div>
+
+
+
+    <div th:replace="~{/footer.html:: footer}"></div>
+    <script src="/js/index.js"></script>
+
+</body>
+</html>

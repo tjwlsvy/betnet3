@@ -1,0 +1,27 @@
+.indexMain{
+    width: 1080px;
+    display: block;
+    justify-content: space-between;
+    height: 100vh; /* 부모 요소의 높이 설정 */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수평 중앙 정렬 */
+}
+
+.table {
+    margin: 20px 0; /* 위아래 여백 추가 */
+    border-collapse: collapse;
+}
+
+.text-center {
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.table th, .table td {
+    text-align: center; /* 테이블 헤더와 데이터 중앙 정렬 */
+    border-left: none; /* 왼쪽 테두리 제거 */
+    border-right: none; /* 각 셀의 오른쪽 테두리 제거 */
+}

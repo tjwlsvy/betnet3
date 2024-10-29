@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BETNET</title>
+    <link href="/css/index.css" rel="stylesheet">
+    <style>
+        .seat {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .available {
+            background-color: lightgreen;
+        }
+        .unavailable {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{/header.html:: header}"></div>
+<div class="wrap">
+    <div class="indexMain">
+        <div class="leftBox">
+            <h1>버스 좌석 예매</h1>
+            <div id="seats">
+                <!-- 좌석 리스트를 div로 감싸서 표시 -->
+
+            </div>
+            <button id="cancelBtn" onclick="resetSeats()">취소</button>
+        </div>
+        <div class="purchaseBox">
+            <div>버스 예약</div>
+            <table class="table">
+                <tbody class="purchaseCartBox">
+                </tbody>
+            </table>
+            <div class="bottomCartInfo">
+                <table class="table table2">
+                    <thead class="purchaseInfoBox">
+
+                    </thead>
+                </table>
+                <div>
+                    <p>4좌석까지 예매 가능합니다.</p>
+                </div>
+                <div>
+                    <button type="button" onclick="busPurchase()">예약하기</button>
+                </div>
+            </div>
+        </div> <!-- 오른쪽 -->
+    </div>
+</div>
+
+
+
+<div th:replace="~{/footer.html:: footer}"></div>
+<script src="/js/bus/bus.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link href="/css/member/mypage.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{/header.html:: header}"></div>
+<div class="wrap">
+    <div class="wrap2">
+        <div class="info">
+            홈 > 마이페이지
+        </div>
+        <h3> 마이페이지 </h3>
+        <div class="pointInfo">
+            <div class="myPointInfo">
+                <p> My Point </p>
+                <div>
+                    <img src="/img/mypage_point_30x30.png" />
+                </div>
+                <div class="myPointBox"> </div>
+            </div>
+        </div>
+
+        <!-- 소제목: 일주일간 구매내역 -->
+        <a class="clickable-heading" href="/member/stat">
+            <h4 class="left-aligned">구매현황분석</h4>
+        </a>
+        <hr>
+        <a class="clickable-heading" href="/bus/list">
+            <h4 class="left-aligned">버스예약내역</h4>
+        </a>
+        <hr>
+
+        <!-- 개인정보 확인 -->
+        <div class="mx-auto">
+            <h4>개인정보 확인</h4>
+            <div class="personalInfo box">
+                <div class="infoRow">
+                    <span>이름:</span> <input id="name" type="text" value="홍길동" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>아이디:</span> <input id="userName" type="text" value="hong123" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>연락처:</span> <input id="contact" type="text" value="010-1234-5678" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>이메일:</span> <input id="email" type="email" value="hong123@example.com" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>나이:</span> <input id="age" type="text" value="33" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>성별:</span> <input id="gender" type="text" value="남자" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>선호하는 팀:</span> <input id="teamCode" type="text" value="FC Seoul" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>계좌:</span> <input id="account" type="text" value="123-4567-8901" readonly>
+                </div>
+                <hr />
+                <div class="infoRow">
+                    <span>가입일:</span> <input id="joinDate" type="text" value="2024-01-01" readonly>
+                </div>
+            </div>
+            <!-- 개인정보 수정 버튼 -->
+            <div class="personalInfoEdit">
+                <button type="button" onclick="pwCheckModal()">개인정보 수정</button>
+            </div>
+        </div>
+        <!--수정페이지 가기위한 비밀번호 확인-->
+        <div class="modal fade" id="pwCheckModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pwCheckModalLabel">비밀번호 확인</h5>
+
+                    </div>
+                    <div class="modal-body" id="pwCheckModalBody">
+                        <input id="pwCheck" type="password" placeholder="비밀번호를 입력해주세요">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="pwCheck()">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{/footer.html:: footer}"></div>
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="/js/member/mypage.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+.indexMain{
+    width: 1080px;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh; /* 부모 요소의 높이 설정 */
+    overflow: auto; /* 스크롤 가능하게 설정 */
+}
+.gameScheduleBox{
+    width: 70%;
+    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: top;
+    background: #f9f9f9; /* 배경색 추가 */
+    padding: 10px; /* 내부 여백 추가 */
+}
+.purchaseBox{
+    width: 30%;
+    border: 1px solid #eeeeee;
+    position: sticky;
+    top: 10px;
+    background-color: white;
+    margin: 0px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.article {
+    display: inline-block; /* 콘텐츠가 가운데 정렬되도록 설정 */
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.article th, .article td {
+    padding: 7px;
+    text-align: left; /* 셀의 텍스트 왼쪽 정렬 */
+    font-size: 7px;
+}
+
+.article th {
+    background-color: #f8f8f8;
+}
+
+/* 강사 CSS */
+.gameListBox > div {
+    display: flex;
+        margin: 30px 0px;
+        align-items: center;
+}
+.gameListBox > div > div:nth-child(1){
+    width : 5%;
+}
+.gameListBox > div > div:nth-child(2){
+        width : 10%;
+}
+.gameListBox > div > div:nth-child(3){
+        width : 15%;
+}
+.gameListBox > div > div:nth-child(4){
+        width : 20%;
+}
+.gameListBox > div > div:nth-child(5){
+    width : 10%;
+}
+.gameListBox > div > div:nth-child(6){
+        width : 30%;
+}
+.gameListBox > div > div:nth-child(7){
+    width : 10%;
+}
+.gameListBox  .matchTxtBox{
+    font-size: 25px;
+    color: #112c62;
+    margin: 0px 20px;
+}
+.gameListBox  .matchBox{
+    display : flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.gameListBox > div > div:nth-child(6) > button{
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    font-size: 15px;
+    padding: 10px;
+    width: 100px;
+}
+.gameListBox > div > div:nth-child(6) > button:hover{
+    background-color: #112c62;
+    color : white;
+}
+.wrap{
+    margin-top: 50px;
+}
+
+.purchaseBox > div:nth-child(1){
+    background-color: #112c62;
+    color: white;
+    padding: 21px;
+    font-size: 20px;
+}
+.purchaseBox > table{
+    margin : 10px 0px;
+}
+.purchaseBox > table button {
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    font-size: 10px;
+    padding: 5px;
+}
+.purchaseBox .purchaseCartBox th{
+    padding: 9px 7px;
+    vertical-align: middle;
+}
+.table2 th{
+    text-align: left;
+    vertical-align: middle;
+}
+.table2 input{
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+}
+.purchaseBox > .bottomCartInfo button {
+    background-color : white;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+}
+.purchaseBox > .bottomCartInfo button:hover {
+    background-color: #112c62;
+    color: white;
+}
+
+.purchaseBox > .bottomCartInfo .colorPoint {
+    color: #112c62;
+    font-size: 17px;
+    margin-right: 4px;
+}
+.leftBox{
+    width: 80%;;
+}

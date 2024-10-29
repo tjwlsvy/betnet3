@@ -1,0 +1,24 @@
+.table th,.table td {
+    text-align: center; /* 헤더 텍스트 중앙 정렬 */
+    font-weight: bold; /* 헤더 글씨 두껍게 */
+}
+
+.table th, .table td {
+    padding: 15px; /* 셀 여백 */
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa; /* 호버 시 배경색 변경 */
+}
+.title {
+    color: black; /* 기본 텍스트 색상 */
+    text-decoration: none; /* 기본 밑줄 제거 */
+}
+
+.title:hover {
+    text-decoration: underline; /* 호버 시 밑줄 추가 */
+}
+
+.search{
+    display: flex;
+}

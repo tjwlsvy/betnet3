@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml 주석 -->
+
+<mapper namespace="web.model.dao.GameDao" >  <!-- mapper start -->
+
+    <!-- namespace=" 매핑할 인터페이스 경로(위치) " -->
+    <!-- id="매핑할 추상메소드명"  resultType="반환할 타입"  -->
+    <!-- parameterType="매개변수타입" sql 매개변수표현 : #{변수명}-->
+    <!-- 포인트로그등록 -->
+    <insert id="insertPointLog" parameterType="web.model.dto.GameDto" useGeneratedKeys="true" keyProperty="pointlogid">
+        insert into pointlogs(memberid , pointChange , description) values(#{memberid} , #{pointChange} , 3)
+    </insert>
+
+    <!-- 포인트로그가져오기 -->
+    <select id="getPointId" resultType="int">
+        select pointlogid from pointlogs order by pointlogid desc limit 1;
+    </select>
+
+    <!-- 게임구매목록 등록 -->
+    <insert id="insertGameList" parameterType="web.model.dto.GameDto" useGeneratedKeys="true" keyProperty="listid">
+        insert into GamePurchaseList(pointlogid) values(#{pointlogid})
+    </insert>
+
+    <!-- 리스트아이디가져오기 -->
+    <select id="getListtId" resultType="int">
+        select listid from GamePurchaseList order by listid desc limit 1;
+    </select>
+
+    <!-- 게임구매하기 -->
+    <insert id="gamePurchase" parameterType="web.model.dto.GameDto">
+        insert into GamePurchaseDetails(listid , matchid , winandloss) values(#{listid} , #{matchid} , #{winandloss})
+    </insert>
+
+    <!-- 리스트 출력 -->
+    <select id="getlist" parameterType="web.model.dto.SearchDto" resultType="web.model.dto.GameDto">
+        select * from GamePurchaseList inner join PointLogs on GamePurchaseList.pointlogid = PointLogs.pointlogid where memberid = #{memberid}
+        <if test="startDate != ''">
+            AND logDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY) - INTERVAL 1 SECOND
+        </if> <!-- endDate의 다음 날의 시작 시점(00:00:00)에서 1초를 빼서 endDate의 마지막 순간(23:59:59)을 포함하도록 설정 -->
+        <if test="gamestate != 0">and gamestate = #{gamestate}</if>
+    </select>
+    <!-- 게임구매 상세 출력 -->
+    <select id="getDetail" parameterType="web.model.dto.GameDto" resultType="web.model.dto.GameDto">
+        select * from GamePurchaseDetails
+        inner join GamePurchaseList on GamePurchaseDetails.listid = GamePurchaseList.listid
+        inner join pointlogs on GamePurchaseList.pointlogid = pointlogs.pointlogid where pointlogs.memberid = #{memberid} and GamePurchaseDetails.listid = #{listid};
+    </select>
+
+    <!-- 내가 구매한 이력이 있는지 -->
+    <select id="isPurchased" parameterType="web.model.dto.GameDto" resultType="web.model.dto.GameDto">
+        select * from GamePurchaseDetails
+        inner join GamePurchaseList on GamePurchaseDetails.listid = GamePurchaseList.listid
+        inner join pointlogs on GamePurchaseList.pointlogid = pointlogs.pointlogid where pointlogs.memberid = #{memberid}
+    </select>
+
+    <!-- 배당금 지금 위한 경기 코드 비교 구매한 게임들 가져오기 -->
+    <select id="purchased" parameterType="web.model.dto.GameDto" resultType="web.model.dto.GameDto">
+        select * from GamePurchaseDetails
+        inner join GamePurchaseList on GamePurchaseDetails.listid = GamePurchaseList.listid
+        inner join pointlogs on GamePurchaseList.pointlogid = pointlogs.pointlogid where GamePurchaseDetails.matchid = #{matchid}
+    </select>
+    <!--  어제 날짜 구매 목록에서 리스트 아이디별 카운트와 회원 아이디 , correct 아이디 찾기-->
+    <select id="yesterdayPurchased" parameterType="String" resultType="web.model.dto.GameDto">
+        SELECT
+        gpd.listid, pl.memberid ,
+        COUNT(gpd.listid) AS listid_count,
+        SUM(CASE WHEN gpd.correct = 1 THEN 1 ELSE 0 END) AS correct_count
+        FROM
+        GamePurchaseDetails gpd
+        INNER JOIN
+        GamePurchaseList gpl ON gpd.listid = gpl.listid
+        INNER JOIN
+        pointlogs pl ON gpl.pointlogid = pl.pointlogid
+        WHERE
+        pl.logdate LIKE CONCAT(#{dateString}, '%')
+        GROUP BY
+        gpd.listid;
+    </select>
+
+    <!-- 최소된 경기 matchstate update -->
+    <update id="updateMatchstate" parameterType="web.model.dto.GameDto">
+        update GamePurchaseDetails set matchstate = 0 where matchid = #{matchid}
+    </update>
+
+    <!--  결과 correct 필드 업데이트 -->
+    <update id="updateCorrect" parameterType="web.model.dto.GameDto">
+        update GamePurchaseDetails set correct = #{value} where matchid = #{matchid} and detailid = #{detailid}
+    </update>
+    <!-- 적중 결과 update -->
+    <!-- <update id="updateCorrectResult" parameterType="web.model.dto.GameDto">
+        update GamePurchaseList set gamestate = #{value} where listid = #{listid}
+    </update> -->
+
+    <select id="selectedCorrectList" parameterType="web.model.dto.GameDto" resultType="web.model.dto.GameDto">
+        select * from GamePurchaseDetails
+        inner join GamePurchaseList on GamePurchaseDetails.listid = GamePurchaseList.listid
+        inner join pointlogs on GamePurchaseList.pointlogid = pointlogs.pointlogid where GamePurchaseList.listid = #{listid}
+    </select>
+    <!-- 배당률 DB 저장 -->
+    <update id="updateOods" parameterType="web.model.dto.GameDto">
+        update GamePurchaseDetails set odds = #{odds} where detailid = #{detailid};
+    </update>
+
+    <!-- 배당금지급 -->
+    <insert id="insertPointOods" parameterType="int">
+        INSERT INTO PointLogs (MemberID, PointChange, Description) values (#{memberid}, #{pointChange} , 2)
+    </insert>
+
+</mapper> <!-- mapper end -->
