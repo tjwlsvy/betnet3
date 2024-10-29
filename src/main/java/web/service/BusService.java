@@ -28,16 +28,17 @@ public class BusService {
         // 2. 속성 호출
         int memberid = loginDto.getMemberid();
         System.out.println("memberid = " + memberid);
+        int requiredPoint = 18000*busDtos.size();
+
+        // 포인트 내역 확인하기
+        PointLogDto pointLogDto = pointDao.getMyPoint(memberid);
+        if (requiredPoint > pointLogDto.getSum()) {
+            return false; // 포인트 부족 시 전체 예약 실패
+        }
+
         for (BusDto busDto : busDtos) {
             busDto.setMemberId(memberid);
             System.out.println("memberid = " + memberid);
-
-            // 포인트 내역 확인하기
-            PointLogDto pointLogDto = pointDao.getMyPoint(busDto.getMemberId());
-            if (18000 > pointLogDto.getSum()) {
-                return false; // 포인트 부족 시 전체 예약 실패
-            }
-
             // 좌석 예약을 위한 처리
             busDao.busPurchase(busDto);
             int pointlogid = gameDao.getPointId();
