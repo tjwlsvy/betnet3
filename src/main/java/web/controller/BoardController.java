@@ -18,6 +18,7 @@ import java.util.Map;
 @RequestMapping("/board")
 public class BoardController {
 
+
     @Autowired private BoardService boardService;
 
     @PostMapping("/write")
