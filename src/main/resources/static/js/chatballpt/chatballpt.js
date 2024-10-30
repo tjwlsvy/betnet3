@@ -58,7 +58,7 @@ function sendMessage() {
             printResponseCharacterByCharacter(html, 30);
             document.querySelector('#loadingSpinner').style.display = 'none';
         },
-        error: (xhr) {
+        error: (xhr) => {
             console.log(xhr)
             console.error("서버에 문제가 발생했습니다.");
             document.querySelector('#loadingSpinner').style.display = 'none';
