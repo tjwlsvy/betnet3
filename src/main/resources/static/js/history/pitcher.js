@@ -50,7 +50,7 @@ function getYearTable(yearValue){
             document.querySelector(".historyTbody3").innerHTML = html3
         },
         // jqXHR: jQuery의 XMLHttpRequest 객체, 응답 코드 등 데이터 포함
-        error: function(jqXHR) {
+        error: function(jqxhr) => {
             if (jqXHR.status === 404) {  // 응답코드 404시 실행
                 console.error('404: 테이블 정보가 없습니다.');
                 alert('해당 연도 자료가 없습니다. 다른 연도를 선택해 보세요.');
